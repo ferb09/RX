@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class TrashSpawner : MonoBehaviour
 {
-    // El Prefab de la basura (tu cubo/esfera con XR Grab Interactable)
-    public GameObject trashPrefab;
+    // CAMBIADO: Se reemplazó "trashPrefab" por un arreglo para aceptar varios tipos de basura
+    public GameObject[] trashPrefabs; // <<-- NUEVO (Antes: public GameObject trashPrefab;)
 
     // Tiempo en segundos entre cada aparicion de basura
     public float spawnInterval = 3.0f;
@@ -21,11 +21,18 @@ public class TrashSpawner : MonoBehaviour
 
     void SpawnTrash()
     {
-        if (trashPrefab == null)
+        // CAMBIADO: Validación para verificar el arreglo en lugar del único prefab
+        if (trashPrefabs == null || trashPrefabs.Length == 0) // <<-- NUEVO
         {
             Debug.LogWarning("Atencion! No has asignado el Prefab de basura en el Spawner.");
             return;
         }
+
+        // AGREGADO: Selección aleatoria de un prefab del arreglo
+        int randomIndex = Random.Range(0, trashPrefabs.Length); // <<-- NUEVO
+        GameObject selectedPrefab = trashPrefabs[randomIndex]; // <<-- NUEVO
+
+        if (selectedPrefab == null) return; // <<-- NUEVO
 
         // Calcula una posicion aleatoria alrededor del Spawner
         float randomX = Random.Range(-spawnRangeX, spawnRangeX);
@@ -44,7 +51,8 @@ public class TrashSpawner : MonoBehaviour
             Random.Range(0f, 360f)
         );
 
-        Instantiate(trashPrefab, spawnPosition, randomRotation);
+        // CAMBIADO: Ahora instancía "selectedPrefab" en lugar de "trashPrefab"
+        Instantiate(selectedPrefab, spawnPosition, randomRotation); // <<-- MODIFICADO
     }
 
     // Dibuja una caja verde en la vista Scene para saber donde va a caer la basura
