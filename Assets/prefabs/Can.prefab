@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6331678095552692241}
   m_Layer: 0
   m_Name: Can
-  m_TagString: Untagged
+  m_TagString: Basura
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,6 +246,10 @@ PrefabInstance:
     - target: {fileID: 295543366600241890, guid: cd8c7024c8812e44ebf0d8443e27721e, type: 3}
       propertyPath: m_Name
       value: Prefab_SodaCan_Crushed2
+      objectReference: {fileID: 0}
+    - target: {fileID: 295543366600241890, guid: cd8c7024c8812e44ebf0d8443e27721e, type: 3}
+      propertyPath: m_TagString
+      value: Basura
       objectReference: {fileID: 0}
     - target: {fileID: 4663289310866430169, guid: cd8c7024c8812e44ebf0d8443e27721e, type: 3}
       propertyPath: m_LocalPosition.x
